@@ -9,7 +9,7 @@ spec:
   #tls:
   #  - secretName: cloudb-secret
   rules:
-    - host: front.169.56.115.153.nip.io
+    - host: front.169.56.88.115.nip.io
       http:
         paths:
           - path: /
