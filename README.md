@@ -20,8 +20,9 @@ $ vi ingress.yaml
 - host정보를 수정합니다.     
 ICP에서는 kubectl get nodes -o wide로 proxy node의 ip를 확인한후, 그 ip로 지정   
 - apiVersion을 수정: ICP는 extensions/v1beta1, vanilla k8s는 networking.k8s.io/v1beta1   
-$ vi config.yaml
-  $ kubectl get svc 명령으로 login, product 서비스의 이름과 포트를 확인하여 틀리면 변경     
+
+$ vi config.yaml   
+  kubectl get svc 명령으로 login, product 서비스의 이름과 포트를 확인하여 틀리면 변경     
 
 $ kubectl apply -f . 
 
