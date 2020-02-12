@@ -1,2 +1,2 @@
-# mynode1
+# mvp sample front
 
