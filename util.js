@@ -5,6 +5,7 @@ var util = {};
 util.log = function(msg) {
 	if(__isDebugMode) console.log(msg);
 }
+	
 
 util.userData = {
 	username: "",
