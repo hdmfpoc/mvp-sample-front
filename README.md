@@ -63,8 +63,8 @@ $ kubectl get po
 ```
 $ kubectl get ing
 ```
-http://{ingress url}/login 
-![](./img/2021-03-30-13-09-44.png)
+http://{ingress url}/login으로 접근합니다.   
+<img src="./img/2021-03-30-13-09-44.png" width=50% height=50%/>
 
 # Next Action
 - [mvp-sample-bizlogic](https://github.com/happykube/mvp-sample-bizlogic.git)을 배포하십시오.
