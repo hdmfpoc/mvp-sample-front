@@ -1,5 +1,4 @@
-#apiVersion: networking.k8s.io/v1beta1
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mvp-sample-front
@@ -10,10 +9,13 @@ spec:
   #tls:
   #  - secretName: cloudb-secret
   rules:
-    - host: front.169.56.88.115.nip.io
+    - host: hklee.front.169.56.84.35.nip.io
       http:
         paths:
           - path: /
+            pathType: Prefix 
             backend:
-              serviceName: mvp-sample-front
-              servicePort: 8081
+              service:
+                name: mvp-sample-front
+                port:
+                  number: 8081
