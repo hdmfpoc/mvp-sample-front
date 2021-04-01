@@ -15,7 +15,7 @@ global.__ACCESS_TOKEN_NAME = "x-access-token";
 global.__AUTH_API_URI = process.env.AUTH_API_URI || "http://login.169.56.88.115.nip.io";
 global.__API_PRODUCT_URI = process.env.API_PRODUCT_URI || "http://biz-logic.169.56.88.115.nip.io/api/products";
 const JWT_SECRET = process.env.JWT_SECRET || "MySecretKey";
-const port = (process.env.PORT || 8090);
+const port = (process.env.service_target_port || 8090);
 //--------
 
 
