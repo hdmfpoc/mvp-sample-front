@@ -4,13 +4,10 @@ mvp sample front 서비스입니다.
 
 # 사전준비
 - k8s cluster에 연결된 PC나 VM에 접근하십시오. 
+- [run-cicd 파이프라인](https://happycloud-lee.tistory.com/195?category=832250) 다운로드
 - namespace변수를 만듭니다. 아래 예 참조하여 적절히 변경하세요. 
 ```
 $ export NS=mvp-sample
-```
-- container image가 저장될 [Docker image registry](https://hub.docker.com)의 Organization변수를 생성합니다. 아래 예 참조하여 적절히 변경하세요. 
-```
-$ export IMGORG=happykube
 ```
 
 # git clone   
@@ -28,30 +25,13 @@ $ kubectl create ns ${NS}
 $ kubectl config set-context $(kubectl config current-context) --namespace ${NS}
 ```
 
-# mvp-sample-front 컨테이너 이미지 만들기
-- clone한 디렉토리로 이동 
-```
-$ cd ~/work/mvp-sample-front 
-```
-- Build container image 
-```
-$ docker build -f deploy/Dockerfile -t ${IMGORG}/mvp-sample-front:1.0.0 .
-```
-
-- Push image 
-```
-$ docker login 
-
-$ docker push ${IMGORG}/mvp-sample-front:1.0.0
-```
-
 # mvp-sample-front microservice 배포
-- deploy/ingress.yaml의 spec.rules.host수정
-```
-$ cd ~/work/mvp-sample-front/deploy   
-$ vi ingress.yaml  
+- cicd디렉토리 하위의 cicd-common.properties, cicd-dev.properties, cicd-prod.properties파일 수정 
 
-$ kubectl apply -f . 
+- run-cicd 실행하고, 값을 적절히 입력 
+```
+$ cd ~/work/mvp-sample-front
+$ run-cicd
 ```
 
 - Pod실행여부 확인
@@ -68,6 +48,4 @@ http://{ingress url}/login으로 접근합니다.
 
 # Next Action
 - [mvp-sample-bizlogic](https://github.com/happykube/mvp-sample-bizlogic.git)을 배포하십시오.
-
-
 
