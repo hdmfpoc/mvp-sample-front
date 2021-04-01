@@ -4,7 +4,12 @@ mvp sample front 서비스입니다.
 
 # 사전준비
 - k8s cluster에 연결된 PC나 VM에 접근하십시오. 
-- [run-cicd 파이프라인](https://happycloud-lee.tistory.com/195?category=832250) 다운로드
+- [run-cicd 파이프라인](https://happycloud-lee.tistory.com/195?category=832250) 다운로드 
+```
+$ cd ~
+$ git clone https://github.com/happyspringcloud/run-cicd.git
+```
+
 - namespace변수를 만듭니다. 아래 예 참조하여 적절히 변경하세요. 
 ```
 $ export NS=mvp-sample
