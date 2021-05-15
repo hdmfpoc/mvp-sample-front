@@ -210,12 +210,10 @@ router.post("/edit/:id", (req, res) => {
 		} else {
 			util.log("저장중 ERROR: " + ret.status);
 		}
+		res.redirect("/main");
 	})
 	.catch((error) => {
 		console.error(error);
-	})
-	.finally(() => {
-		res.redirect("/main");
 	});
 });
 
