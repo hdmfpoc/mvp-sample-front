@@ -40,9 +40,6 @@ node {
     def imageOrganization = props["image_project"]
     def imageRepository = props["image_repository"]
     def imageTag = props["image_tag"]
-
-    def dockerRegistry = props["dockerRegistry"]
-    def credentialRegistry=props["credentialRegistry"]
     
     def baseDir = props["baseDir"]
     def skipStages = props["skipStages"]
