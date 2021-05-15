@@ -148,14 +148,13 @@ router.post("/insert", (req, res) => {
 		} else {
 			util.log("저장중 ERROR: " + ret.status);
 		}
+		res.redirect("/main");
 	})
 	.catch((error) => {
 		console.error(error);
-	})
-	.finally(() => {
-		res.redirect("/main");
 	});
 });
+
 
 //--Show
 router.get("/detail/:id", (req, res) => {
@@ -234,12 +233,10 @@ router.get("/delete/:id", (req, res) => {
 		util.log("Success to delete data !");
 		let data = ret.data;
 		util.log(data);
+		res.redirect("/main");
 	})
 	.catch((error) => {
 		console.error("Fail to delete data!", error);
-	})
-	.finally(()=>{
-		res.redirect("/main");
 	});	
 });
 
