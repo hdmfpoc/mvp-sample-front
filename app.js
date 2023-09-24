@@ -52,7 +52,8 @@ app.use(function(req, res, next) {
 	}
 	
 	//-- TODO - cookie가 아닌 Session에서 JWT KEY를 가져와, REDIS에서 해당 key의 JWT Token가져오도록 변경 필요
-	let token = req.cookies[__ACCESS_TOKEN_NAME];
+	//let token = req.cookies[__ACCESS_TOKEN_NAME];
+	let token = util.userData.token;
 	if((typeof token == "undefined") || token == null) token = "";
 	
     if(token === "") {
@@ -76,6 +77,7 @@ app.use(function(req, res, next) {
 			util.log("success to verify => " + JSON.stringify(decoded));
 			util.userData.username = decoded.username;
 			util.userData.name = decoded.name;
+			util.userData.token = token;
 			next();
 		}
 	});

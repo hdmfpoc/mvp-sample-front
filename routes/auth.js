@@ -36,7 +36,8 @@ router.post("/login", (req, res) => {
 	.then((ret) => {
 		if(ret.status == 200) {
 			util.log("##### Gerated Access Token=>"+ret.data.data);
-			res.cookie(__ACCESS_TOKEN_NAME, ret.data.data);		//cookie에 임시로 저장
+			//res.cookie(__ACCESS_TOKEN_NAME, ret.data.data);		//cookie에 임시로 저장
+			util.userData.token = ret.data.data
 			res.redirect("/main");
 		} else {
 			res.redirect("/login");
