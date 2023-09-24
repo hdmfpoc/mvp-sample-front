@@ -1,0 +1,89 @@
+#VERSION:1.2
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mvp-sample-front
+  namespace: samples
+  labels:
+    app: mvp-sample-front
+spec:
+  serviceName: mvp-sample-front
+  
+  selector:
+    matchLabels:
+      app: mvp-sample-front
+  replicas: 1
+  template:
+    metadata:
+      name: mvp-sample-front
+      labels:
+        app: mvp-sample-front
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: mvp-sample-front
+        image: bastion.cmlee.kbstar.local:5005/happykube/mvp-sample-front:0.0.2
+        imagePullPolicy: Always
+        env:
+        - name: SERVER_PORT
+          value: "8881" 
+        - name: PROFILE
+          value: dev
+        envFrom:
+        - configMapRef:
+            name: "mvp-sample-front-cm"        
+        - secretRef:
+            name: "mvp-sample-front-secret"           
+        ports:
+        - name: containerport
+          containerPort: 8881
+        resources:
+          requests:
+            cpu: 128m
+            memory: 128Mi
+          limits:
+            cpu: 1024m
+            memory: 1024Mi
+        
+          
+            
+            
+          
+          
+          
+          
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mvp-sample-front
+  namespace: samples  
+spec:
+  type: ClusterIP
+  selector:
+    app: mvp-sample-front
+  ports:
+  - name: port1
+    port: 8881
+    targetPort: 8881
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: mvp-sample-front
+  namespace: samples  
+spec:
+  rules:
+  - host: {{ SERVICE_HOST }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: mvp-sample-front 
+            port: 
+              number: 8881

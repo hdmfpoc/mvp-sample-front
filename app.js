@@ -56,6 +56,7 @@ app.use(function(req, res, next) {
 	if((typeof token == "undefined") || token == null) token = "";
 	
     if(token === "") {
+        util.log("### Empty access token ###");
     	res.redirect("/login");
     	next();
     	return;
