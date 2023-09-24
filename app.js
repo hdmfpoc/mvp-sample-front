@@ -7,6 +7,8 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const util = require(__dirname+'/util');
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
 //----------
 
 //--- global constants & 환경변수
@@ -51,9 +53,9 @@ app.use(function(req, res, next) {
     	return;
 	}
 	
-	//-- TODO - cookie가 아닌 Session에서 JWT KEY를 가져와, REDIS에서 해당 key의 JWT Token가져오도록 변경 필요
+	//-- Get JWT Token from local storage
 	//let token = req.cookies[__ACCESS_TOKEN_NAME];
-	let token = util.userData.token;
+	let token = localStorage.getItem(__ACCESS_TOKEN_NAME);
 	if((typeof token == "undefined") || token == null) token = "";
 	
     if(token === "") {
@@ -77,7 +79,6 @@ app.use(function(req, res, next) {
 			util.log("success to verify => " + JSON.stringify(decoded));
 			util.userData.username = decoded.username;
 			util.userData.name = decoded.name;
-			util.userData.token = token;
 			next();
 		}
 	});
