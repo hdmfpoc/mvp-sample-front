@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mvp-sample-front
-  namespace: samples
+  namespace: user30
   labels:
     app: mvp-sample-front
 spec:
@@ -58,7 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mvp-sample-front
-  namespace: samples
+  namespace: user30  
 spec:
   type: ClusterIP
   selector:
@@ -74,7 +74,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   name: mvp-sample-front
-  namespace: samples
+  namespace: user30  
 spec:
   rules:
   - host: {{ SERVICE_HOST }}
