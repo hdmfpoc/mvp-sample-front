@@ -54,8 +54,8 @@ app.use(function(req, res, next) {
 	}
 	
 	//-- Get JWT Token from local storage
-	//let token = req.cookies[__ACCESS_TOKEN_NAME];
-	let token = localStorage.getItem(__ACCESS_TOKEN_NAME);
+	let token = req.cookies[__ACCESS_TOKEN_NAME];
+	//let token = localStorage.getItem(__ACCESS_TOKEN_NAME);
 	if((typeof token == "undefined") || token == null) token = "";
 	
     if(token === "") {
